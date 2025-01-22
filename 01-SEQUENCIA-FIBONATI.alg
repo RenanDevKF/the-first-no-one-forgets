@@ -12,9 +12,9 @@ inicio
     C1 <- 0
     C2 <- 1
     ESCREVA (C1)
-    ESCREVA (C2)
-    PARA CT <- 3 ate 15 passo 1 FACA // LAÇO PARA CALCULAR OS PROXIMOS NUMERO DA SEQUENCIA DE FIBONACCI, JÁ Q 0 E 1 FORAM ADICIONADO ANTES
+    ESCREVA (C2) 
             CC <- C1+C2  
+    PARA CT <- 3 ate 15 passo 1 FACA 
             escreva (CC)
             C1 <- C2
             C2 <- CC 

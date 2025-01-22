@@ -9,16 +9,14 @@ var
     R: CARACTERE
 
     FUNCAO PAROUIMPAR(A: INTEIRO): CARACTERE
-    VAR
-    PAR, IMPAR: CARACTERE
-    S: CARACTERE
+
     INICIO
         SE (A % 2 = 0) ENTAO
-            S <- "PAR"
+            RETORNE "PAR"
             SENAO
-            S <- "IMPAR"
+            RETORNE "IMPAR"
         FIMSE
-        RETORNE (S)
+        
     FIMFUNCAO        
 inicio
     escreval("DIGITE UM NUMERO: ")
