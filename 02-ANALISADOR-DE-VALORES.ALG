@@ -1,0 +1,41 @@
+algoritmo "ANALISADOR DE VALORES"
+// Disciplina  :  [Linguagem e Lógica de Programação]
+// Professor   : GUSTAVO GUANABARA DO CURSO EM VIDEO
+// Descrição   : O PROGRAMA ANALISE DIVERSOS PARAMETROS DE UM ALGARISMO DIGITADO PELO USUARIO
+// Autor(a)    : RENAN KIRCHMAIER FAYER
+// Data atual  : 20/01/25
+var
+
+CONT, N, SOMA, DIVE, NULO, PAR: INTEIRO
+MEDIA: REAL
+inicio
+
+    SOMA <- 0
+    DIVE <- 0
+    NULO <- 0
+    PAR <- 0
+    
+PARA CONT <- 1 ATE 5 PASSO 1 FACA
+        ESCREVA ("DIGITE O ", CONT,"o. VALOR: ")
+    LEIA (N)
+       SOMA <- SOMA+N
+    SE (N%5=0) ENTAO
+        DIVE <- DIVE+1
+    FIMSE
+    SE (N=0) ENTAO
+        NULO <- NULO+1
+    FIMSE
+    SE (N%2=0) ENTAO
+        PAR <- PAR+1
+    FIMSE
+FIMPARA
+    MEDIA <- SOMA/5
+    ESCREVAL ("A SOMA TOTAL DOS VALORES É ", SOMA)
+    ESCREVAL ("A MEDIA ENTRE OS VALORES É ", MEDIA)
+    ESCREVAL ("QUANTIDADE DE VALORES DIVISIVEIS POR 5: ", DIVE)
+    ESCREVAL ("QUANTIDADE DE VALORES NULOS: ", NULO)
+    ESCREVAL ("A QUANTIDADE DE VALORES PARES É IGUAL A: ", PAR)
+
+        
+
+fimalgoritmo
