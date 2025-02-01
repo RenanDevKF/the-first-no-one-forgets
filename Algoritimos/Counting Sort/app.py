@@ -37,6 +37,9 @@ if __name__ == "__main__":
     # Output array
     out = count_sort(arr)
 
+
+
+
     for num in out:
         print(num, end=" ")
     
