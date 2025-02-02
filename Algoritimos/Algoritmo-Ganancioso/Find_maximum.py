@@ -4,6 +4,9 @@
 # Definir o tamanho da lista
 # achar a soma inicial de cada Stack
 # Encontar o primeiro elemento do topo da Stack
+# Conferir a soma entre as stacks
+# Caso diferente, subtrair o topo da Stack com maior soma
+# Repetir o processo até que as somas sejam iguais
 
 
 def maxSum(stack1, stack2, stack3, n1 , n2, n3):
