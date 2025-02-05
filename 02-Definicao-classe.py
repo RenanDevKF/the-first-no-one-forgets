@@ -7,7 +7,7 @@
 # Exemplo usando carros:
 
 class Carro:
-    def __init__(self, marca, modelo, cor):
+    def __init__(self, marca, modelo, cor): # def -metodo-(atributos)
         self.marca = marca #atributos
         self.modelo = modelo
         self.cor = cor
