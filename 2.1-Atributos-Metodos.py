@@ -37,6 +37,27 @@ Pessoa.especie = "Ser Vivo"
 print(pessoa1.especie)  # Saída: Ser Vivo
 print(pessoa2.especie)  # Saída: Ser Vivo
 
+# Teoria sobre Metodos
+
+"""
+Os métodos são funções dentro da classe que definem comportamentos dos objetos. Eles são chamados a partir de um objeto e podem acessar/modificar atributos.
+
+Tipos de Métodos
+1. Métodos de Instância
+
+- Definidos com self.
+- Podem acessar e modificar atributos do objeto.
+
+2. Métodos de Classe
+
+- Definidos com @classmethod e cls.
+- Podem modificar atributos de classe.
+
+3. Métodos Estáticos
+
+- Definidos com @staticmethod.
+- Não acessam atributos de instância ou de classe diretamente.
+"""
 
 
 
