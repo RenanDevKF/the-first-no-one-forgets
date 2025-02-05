@@ -38,3 +38,19 @@ class Pessoa:
 # Criando objetos a partir da classe Pessoas
 pessoa1 = Pessoa("João", 30, 1.75)
 pessoa2 = Pessoa("Maria", 25, 1.60)
+
+# Diferença basica entre chamar uma classe e chamar uma função diretamente
+
+# Chamando função diretamente
+# Teria que digitar os argumentos toda vez que chamarmos a funcao. Não armazena dados em variaveis.
+# Mantem parametros dentro das funções mas nao cria atributos ou metodos.
+
+def exibir_info(nome, idade, altura):
+    print(f"Nome: {nome}, Idade: {idade}, Altura: {altura}m")
+
+# Chamando a função diretamente
+exibir_info("João", 30, 1.75)
+exibir_info("Maria", 25, 1.60)
+
+
+# Para exemplo de classe, vide exemplo superior.
