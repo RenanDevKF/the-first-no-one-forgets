@@ -59,7 +59,30 @@ Tipos de Métodos
 - Não acessam atributos de instância ou de classe diretamente.
 """
 
+# Por que usar @classmethod e nao pessoa.especie = "Alien"? ou pessoa1.especie = "Alien"?
+class Pessoa:
+    especie = "Humano"
+
+    @classmethod
+    def mudar_especie(cls, nova_especie):
+        cls.especie = nova_especie
+
+# Criando objetos
+pessoa1 = Pessoa()
+pessoa2 = Pessoa()
+
+# Chamando o método de classe a partir de um objeto
+pessoa1.mudar_especie("Alien")
+
+print(pessoa1.especie)  # Saída: Alien
+print(pessoa2.especie)  # Saída: Alien
+print(Pessoa.especie)   # Saída: Alien
 
 
+"""
+- Se precisar alterar o atributo da classe de qualquer lugar (objeto ou classe), @classmethod é a melhor opção.
+- Se for apenas um ajuste pontual, modificar Pessoa.especie diretamente também funciona.
+- Se modificar via objeto (pessoa1.especie = "Alien"), um novo atributo de instância será criado e não alterará os outros objetos.
+"""
 
 
