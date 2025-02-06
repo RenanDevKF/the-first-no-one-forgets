@@ -83,6 +83,61 @@ print(Pessoa.especie)   # Saída: Alien
 - Se precisar alterar o atributo da classe de qualquer lugar (objeto ou classe), @classmethod é a melhor opção.
 - Se for apenas um ajuste pontual, modificar Pessoa.especie diretamente também funciona.
 - Se modificar via objeto (pessoa1.especie = "Alien"), um novo atributo de instância será criado e não alterará os outros objetos.
+
+- Abaixo segue outro exemplo a respeito da utilização de multiplos metodos de classe diferentes.
 """
+class Usuario:
+    nivel_acesso = "Básico"
+    usuarios_online = 0
 
+    @classmethod
+    def mudar_nivel_acesso(cls, novo_nivel):
+        cls.nivel_acesso = novo_nivel
 
+    @classmethod
+    def adicionar_usuario(cls):
+        cls.usuarios_online += 1
+
+    @classmethod
+    def remover_usuario(cls):
+        if cls.usuarios_online > 0:
+            cls.usuarios_online -= 1
+
+    @classmethod
+    def mostrar_status(cls):
+        print(f"Nível de Acesso: {cls.nivel_acesso}, Usuários Online: {cls.usuarios_online}")
+
+# Chamando os métodos
+Usuario.adicionar_usuario()
+Usuario.adicionar_usuario()
+Usuario.mostrar_status()  # Nível de Acesso: Básico, Usuários Online: 2
+
+Usuario.mudar_nivel_acesso("Admin")
+Usuario.remover_usuario()
+Usuario.mostrar_status()  # Nível de Acesso: Admin, Usuários Online: 1
+
+# Exepmlo pratico
+"""Exercício Prático
+Crie uma classe ContaBancaria com os seguintes requisitos:
+
+Atributos: titular, saldo
+Métodos:
+depositar(valor): Adiciona dinheiro ao saldo.
+sacar(valor): Subtrai dinheiro do saldo (se houver saldo suficiente).
+exibir_saldo(): Mostra o saldo atual."""
+
+class ContaBancaria:
+        
+    def __init__(self, titular, saldo):
+        self.titular = titular
+        self.saldo = saldo
+        
+    def depositar(valor):
+        saldo += valor
+    def sacar(valor):
+        saldo -= valor
+    def exibir_saldo(self):
+        print(f"Olá {self.titular}, seu saldo em conota é R$ {self.saldo}.")
+        
+    #criando objetos
+    
