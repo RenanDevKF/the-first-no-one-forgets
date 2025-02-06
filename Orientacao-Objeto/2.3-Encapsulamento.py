@@ -41,3 +41,36 @@ class ContaBancaria:
     
     def exibir_saldo(self):
         print(f"Olá {self.titular}, seu saldo atual é R$ {self.__saldo:.2f}")
+        
+"""
+        Criando Métodos "Getter" e "Setter"
+Para permitir acesso controlado, usamos métodos especiais:
+
+Getter (get_saldo) → Obtém o saldo de forma segura.
+Setter (set_saldo) → Permite alterar o saldo com validação.
+"""
+class ContaBancaria:
+    def __init__(self, titular, saldo):
+        self.titular = titular
+        self.__saldo = saldo
+    
+    def get_saldo(self):  # Getter
+        return self.__saldo
+    
+    def set_saldo(self, novo_saldo):  # Setter
+        if novo_saldo >= 0:
+            self.__saldo = novo_saldo
+        else:
+            print("Erro! O saldo não pode ser negativo.")
+
+# Agora podemos acessar e modificar o saldo de forma segura:
+
+conta = ContaBancaria("Sarah", 300)
+
+print(conta.get_saldo())  # ✅ Obtém o saldo
+
+conta.set_saldo(500)  # ✅ Altera o saldo de forma controlada
+print(conta.get_saldo())  # Mostra o saldo atualizado
+
+conta.set_saldo(-100)  # ❌ Mensagem de erro, pois saldo negativo não é permitido
+
