@@ -132,12 +132,38 @@ class ContaBancaria:
         self.titular = titular
         self.saldo = saldo
         
-    def depositar(valor):
-        saldo += valor
-    def sacar(valor):
-        saldo -= valor
+    def depositar(self, valor):
+        if valor > 0:
+            self.saldo += valor
+            print(f"Seu novo saldo é {self.saldo}")
+    def sacar(self, valor):
+        if  valor <= self.saldo:
+            self.saldo -= valor
+            print(f"Seu novo saldo é {self.saldo}")
+        else:
+            print("Saque não permitido")
     def exibir_saldo(self):
-        print(f"Olá {self.titular}, seu saldo em conota é R$ {self.saldo}.")
+        print(f"Olá {self.titular}, seu saldo em conta é R$ {self.saldo}.")
         
-    #criando objetos
+#criando objetos
     
+pessoa1 = ContaBancaria("Renan", 0)
+pessoa2 = ContaBancaria("Sarah", 100)
+pessoa3 = ContaBancaria("Adriana", 500)
+    
+#chamando metodo
+    
+pessoa1.depositar(300)
+pessoa1.sacar(400)
+pessoa1.depositar(200)
+pessoa1.exibir_saldo()
+
+pessoa2.depositar(100)
+pessoa2.depositar(300)
+pessoa2.depositar(200)
+pessoa2.depositar(100)
+pessoa2.sacar(400)
+pessoa2.exibir_saldo()
+
+pessoa3.exibir_saldo()
+
