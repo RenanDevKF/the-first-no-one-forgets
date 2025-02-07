@@ -16,8 +16,12 @@ class ContaBancaria:
             self.__saldo = novo_saldo
         else:
             print("Erro! O saldo não pode ser negativo.")
-
-        
+    
+    def get_data_abertura(self):
+        return self._data_abertura
+    
+    def set_data_abertura(self, nova_data):
+        self._data_abertura = nova_data    
     def depositar(self, valor):
         if valor > 0:
             self.__saldo += valor
