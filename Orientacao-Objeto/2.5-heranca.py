@@ -64,3 +64,155 @@ Conclusão
 ✔️ Podemos sobrescrever métodos da classe base para alterar seu comportamento.
 ✔️ O super() chama métodos da classe Pai, evitando repetição de código.
 """
+
+# 1️⃣ Exemplo com Várias Subclasses
+
+# Classe Base (Superclasse)
+class Animal:
+    def __init__(self, nome):
+        self.nome = nome
+    
+    def fazer_som(self):
+        print("O animal faz um som.")
+
+# Subclasse Cachorro
+class Cachorro(Animal):
+    def fazer_som(self):  # Sobrescrevendo o método
+        print(f"{self.nome} diz: Au Au!")
+
+# Subclasse Gato
+class Gato(Animal):
+    def fazer_som(self):  # Sobrescrevendo o método
+        print(f"{self.nome} diz: Miau!")
+
+# Criando objetos
+cachorro = Cachorro("Rex")
+gato = Gato("Mimi")
+
+# Chamando métodos
+cachorro.fazer_som()  # Saída: Rex diz: Au Au!
+gato.fazer_som()      # Saída: Mimi diz: Miau!
+
+"""
+✔️ Criamos a superclasse Animal com um método genérico fazer_som().
+✔️ As subclasses Cachorro e Gato sobrescrevem esse método com comportamentos específicos.
+✔️ Isso permite criar diferentes tipos de animais sem modificar a classe base.
+"""
+
+# 2️⃣ Exemplo com super() e métodos adicionais
+# Podemos chamar o método da classe Pai (super()) e ainda adicionar novos comportamentos na subclasse.
+
+class Veiculo:
+    def __init__(self, marca, modelo):
+        self.marca = marca
+        self.modelo = modelo
+
+    def descrever(self):
+        print(f"Veículo: {self.marca} {self.modelo}")
+
+# Subclasse Carro
+class Carro(Veiculo):
+    def __init__(self, marca, modelo, portas):
+        super().__init__(marca, modelo)  # Chamando o construtor da classe Pai
+        self.portas = portas
+
+    def descrever(self):  # Sobrescrevendo o método
+        super().descrever()  # Chamando a versão da classe Pai
+        print(f"Tem {self.portas} portas.")
+
+# Criando um objeto da subclasse
+meu_carro = Carro("Toyota", "Corolla", 4)
+meu_carro.descrever()
+
+"""
+✔️ super().__init__(marca, modelo) chama o construtor da classe base.
+✔️ O método descrever() da subclasse chama o da classe Pai e adiciona novas informações.
+✔️ Resultado esperado:
+
+Veículo: Toyota Corolla
+Tem 4 portas.
+
+"""
+
+# Exemplo de Herança Múltipla
+# Em Python, uma classe pode herdar de múltiplas classes ao mesmo tempo.
+
+class Mamifero:
+    def __init__(self):
+        print("Mamífero criado.")
+
+    def amamentar(self):
+        print("Este animal amamenta seus filhotes.")
+
+class Ave:
+    def __init__(self):
+        print("Ave criada.")
+
+    def voar(self):
+        print("Este animal pode voar.")
+
+# Subclasse que herda de Mamifero e Ave
+class Morcego(Mamifero, Ave):
+    def __init__(self):
+        super().__init__()  # Chama o construtor da primeira classe herdada
+        print("Morcego criado.")
+
+# Criando um objeto da subclasse
+morcego = Morcego()
+morcego.amamentar()  # Método da classe Mamifero
+morcego.voar()       # Método da classe Ave
+
+"""
+✔️ Morcego herda de Mamifero e Ave.
+✔️ Ele pode usar métodos de ambas as classes (amamentar() e voar()).
+✔️ A chamada de super().__init__() executa apenas o construtor da primeira classe listada (Mamifero).
+✔️ Se precisar chamar todos os construtores, devemos chamar explicitamente Ave.__init__(self).
+ex:
+# Subclasse que herda de Mamifero e Ave
+class Morcego(Mamifero, Ave):
+    def __init__(self):
+        Mamifero.__init__(self)  # Chamando explicitamente o construtor de Mamifero
+        Ave.__init__(self)       # Chamando explicitamente o construtor de Ave
+        print("Morcego criado.")
+"""
+
+# Criando Métodos Genéricos na Superclasse
+# Podemos criar métodos genéricos na classe Pai e especializá-los nas subclasses.
+
+class Funcionario:
+    def __init__(self, nome, salario):
+        self.nome = nome
+        self.salario = salario
+
+    def calcular_bonus(self):
+        return 0  # Método genérico
+
+# Subclasse Gerente
+class Gerente(Funcionario):
+    def calcular_bonus(self):
+        return self.salario * 0.10  # 10% de bônus
+
+# Subclasse Desenvolvedor
+class Desenvolvedor(Funcionario):
+    def calcular_bonus(self):
+        return self.salario * 0.20  # 20% de bônus
+
+# Criando funcionários
+gerente = Gerente("Alice", 5000)
+dev = Desenvolvedor("Bob", 6000)
+
+print(f"Bônus do Gerente: R$ {gerente.calcular_bonus():.2f}")
+print(f"Bônus do Desenvolvedor: R$ {dev.calcular_bonus():.2f}")
+
+"""
+✔️ Funcionario define um método genérico calcular_bonus() que retorna 0.
+✔️ Gerente e Desenvolvedor sobrescrevem esse método com cálculos específicos.
+✔️ Resultado esperado:
+
+ruby
+Copiar
+Editar
+Bônus do Gerente: R$ 500.00
+Bônus do Desenvolvedor: R$ 1200.00
+
+"""
