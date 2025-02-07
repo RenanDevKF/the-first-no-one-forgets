@@ -222,3 +222,47 @@ Conclusão
 ✔️ Herança múltipla é possível, mas deve ser usada com cuidado.
 
 """
+
+# O que é Polimorfismo?
+# O Polimorfismo permite que métodos com o mesmo nome tenham comportamentos diferentes dependendo da classe que os implementa.
+# Herança + Polimorfismo na Prática
+
+class ContaBancaria:
+    def __init__(self, titular, saldo):
+        self.titular = titular
+        self.saldo = saldo
+
+    def exibir_saldo(self):
+        print(f"{self.titular}, seu saldo é R$ {self.saldo:.2f}")
+
+class ContaPoupanca(ContaBancaria):
+    def exibir_saldo(self):
+        print(f"[Conta Poupança] {self.titular}, saldo disponível: R$ {self.saldo:.2f}")
+
+class ContaCorrente(ContaBancaria):
+    def __init__(self, titular, saldo, limite):
+        super().__init__(titular, saldo)
+        self.limite = limite
+
+    def exibir_saldo(self):
+        print(f"[Conta Corrente] {self.titular}, saldo disponível: R$ {self.saldo:.2f} com limite de R$ {self.limite:.2f}")
+
+# Criando diferentes contas
+conta1 = ContaPoupanca("Carlos", 1500)
+conta2 = ContaCorrente("Mariana", 2000, 500)
+
+# Chamando o método polimórfico
+contas = [conta1, conta2]
+
+for conta in contas:
+    conta.exibir_saldo()
+
+"""
+Saída esperada:
+
+[Conta Poupança] Carlos, saldo disponível: R$ 1500.00
+[Conta Corrente] Mariana, saldo disponível: R$ 2000.00 com limite de R$ 500.00
+🔹 O mesmo método (exibir_saldo()) se comporta de maneira diferente nas subclasses.
+🔹 Isso é um exemplo prático de Polimorfismo!
+
+"""
