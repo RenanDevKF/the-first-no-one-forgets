@@ -17,6 +17,9 @@ class ContaBancaria:
         else:
             print("Erro! O saldo não pode ser negativo.")
     
+    def  get_titular(self):
+        return self.titular
+    
     def get_data_abertura(self):
         return self._data_abertura
     
@@ -60,3 +63,4 @@ conta2 = ContaBancaria("Maria", 300, "06/02/2025")
 conta1.transferencia(conta2, 100)
 conta1.exibir_dados()
 conta2.exibir_dados()
+print(f"Saldo de {conta1.get_titular()}: R$ {conta1.get_saldo():.2f}")
