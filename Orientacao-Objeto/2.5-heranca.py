@@ -215,4 +215,10 @@ Editar
 Bônus do Gerente: R$ 500.00
 Bônus do Desenvolvedor: R$ 1200.00
 
+Conclusão
+✔️ Herança permite criar classes novas baseadas em classes existentes.
+✔️ Subclasses podem sobrescrever métodos da superclasse.
+✔️ O super() chama métodos da classe base, evitando duplicação de código.
+✔️ Herança múltipla é possível, mas deve ser usada com cuidado.
+
 """
