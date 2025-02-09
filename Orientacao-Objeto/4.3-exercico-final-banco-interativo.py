@@ -65,7 +65,7 @@ class TransferenciaInterna:
                 print("Conta de destino inexistente")
             else:
                 valor = float(input("Digite o valor a ser transferido: "))
-                if valor < 0 and valor > ContaBancaria.contas[conta_origem]["saldo"]:
+                if valor < 0 or valor > ContaBancaria.contas[conta_origem]["saldo"]:
                     print("Saldo insuficiente")
                 else:
                     ContaBancaria.contas[conta_origem]["saldo"] -= valor
