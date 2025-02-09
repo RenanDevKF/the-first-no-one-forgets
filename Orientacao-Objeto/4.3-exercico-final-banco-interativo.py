@@ -7,7 +7,7 @@ class ContaBancaria:
         self.titular = titular
         self.conta = conta
         self.saldo = saldo
-        ContaBancaria.contas[conta] = titular
+        ContaBancaria.contas[conta] = {"titular": titular, "saldo": saldo}
     
 class CriarConta:
     def __init__(self):
@@ -19,6 +19,7 @@ class CriarConta:
         self.conta_bancaria.titular = titular
         self.conta_bancaria.conta = conta
         self.conta_bancaria.saldo = 0
-        ContaBancaria.contas[conta] = titular
+        ContaBancaria.contas[conta] = {"titular": titular, "saldo": 0}
         ContaBancaria.proxima_conta += 1
         return conta
+    
