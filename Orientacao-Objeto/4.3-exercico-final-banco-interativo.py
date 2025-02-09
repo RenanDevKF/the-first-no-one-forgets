@@ -15,7 +15,8 @@ class CriarConta:
 
     def criar_conta(self):
         titular = input("Digite o nome do titular: ")
-        conta = ContaBancaria.proxima_conta+len(ContaBancaria.contas)
+        conta = ContaBancaria.proxima_conta+len
+        ContaBancaria.proxima_conta += 1
         self.conta_bancaria.titular = titular
         self.conta_bancaria.conta = conta
         self.conta_bancaria.saldo = 0
