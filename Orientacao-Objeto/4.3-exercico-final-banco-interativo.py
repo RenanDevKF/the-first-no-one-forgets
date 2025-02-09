@@ -10,9 +10,7 @@ class ContaBancaria:
         ContaBancaria.contas[conta] = {"titular": titular, "saldo": saldo}
     
 class CriarConta:
-    def __init__(self):
-        self.conta_bancaria = ContaBancaria(None, None, None)
-
+    
     def criar_conta(self):
         titular = input("Digite o nome do titular: ")
         conta = ContaBancaria.proxima_conta+len
@@ -25,8 +23,7 @@ class CriarConta:
         return conta
     
 class Deposito:
-    def __init__(self):
-        self.conta_bancaria = ContaBancaria(None, None, None)
+    
 
     def depositar(self):
         conta = int(input("Digite o numero da conta: "))
@@ -41,8 +38,7 @@ class Deposito:
                 print("Deposito realizado com sucesso!")
                 
 class Saque:
-    def __init__(self):
-        self.conta_bancaria = ContaBancaria(None, None, None)
+    
 
     def sacar(self):
         conta = int(input("Digite o numero da conta: "))
@@ -57,8 +53,7 @@ class Saque:
                 print("Saque realizado com sucesso!")
 
 class TransferenciaInterna:
-    def __init__(self):
-        self.conta_bancaria = ContaBancaria(None, None, None)
+    
         
     def transferencia(self):
         conta_origem = int(input("Digite o numero da conta de origem: "))
@@ -78,8 +73,7 @@ class TransferenciaInterna:
                     print("Transferencia realizada com sucesso!")
                     
 class ExibirSaldo:
-    def __init__(self):
-        self.conta_bancaria = ContaBancaria(None, None, None)
+    
         
     def exibir_saldo(self):
         conta = int(input("Digite o numero da conta: "))
