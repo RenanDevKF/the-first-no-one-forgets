@@ -15,9 +15,9 @@ class CriarConta:
     def criar_conta():
         titular = input("Digite o nome do titular: ")
         conta = ContaBancaria.proxima_conta
-        ContaBancaria.contas[conta] = {"titular": titular, "saldo": 0}
         ContaBancaria.proxima_conta += 1
-        print("Conta criada com sucesso! Numero da sua nova conta é: {conta}")
+        ContaBancaria.contas[conta] = {"titular": titular, "saldo": 0}        
+        print(f"Conta criada com sucesso! Numero da sua nova conta é: {conta}")
     
 class Deposito:
     
@@ -112,9 +112,11 @@ class MenuInterativo:
                     print("Saindo do sistema...")
                     break
                 if opcao in self.opcoes:
-                    self.opcoes[opcao]()  # Chama o método estático corretamente
+                    self.opcoes[opcao]()  # Chama a função escolhida
+                    input("\nPressione Enter para continuar...")  # Adiciona pausa no menu
                 else:
                     print("Opção inválida. Tente novamente.")
+
             except ValueError:
                 print("Erro: Digite um número válido.")  
   
