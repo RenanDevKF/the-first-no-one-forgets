@@ -84,35 +84,31 @@ class ExibirSaldo:
             
 class MenuInterativo:
     def __init__(self):
-        self.criar_conta = CriarConta()
-        self.depositar = Deposito()
-        self.sacar = Saque()
-        self.transferencia = TransferenciaInterna()
-        self.exibir_saldo = ExibirSaldo()
+        self.opcoes = {
+            1: CriarConta.criar_conta,
+            2: Deposito.depositar,
+            3: Saque.sacar,
+            4: TransferenciaInterna.transferencia,
+            5: ExibirSaldo.exibir_saldo
+        }
         
     def exibir_menu(self):
-        print("1 - Criar Conta")
-        print("2 - Depositar")
-        print("3 - Sacar")
-        print("4 - Transferir")
-        print("5 - Exibir Saldo")
-        print("0 - Sair")
-        
-        opcao = int(input("Digite a opção desejada: "))
-        return opcao
-        
-    def executar_opcao(self, opcao):
-        while opcao != 0:
-            if opcao == 1:
-                self.criar_conta.criar_conta()
-            elif opcao == 2:
-                self.depositar.depositar()  
-            elif opcao == 3:
-                self.sacar.sacar()
-            elif opcao == 4:
-                self.transferencia.transferencia()
-            elif opcao == 5:
-                self.exibir_saldo.exibir_saldo()
-            else:
-                print("Opção inválida, tente novamente um numero de 0 a 5.")
-            opcao = self.exibir_menu()        
+        while True:
+            print("\n1 - Criar Conta")
+            print("2 - Depositar")
+            print("3 - Sacar")
+            print("4 - Transferir")
+            print("5 - Exibir Saldo")
+            print("0 - Sair")
+
+            try:
+                opcao = int(input("Digite a opção desejada: "))
+                if opcao == 0:
+                    print("Saindo do sistema...")
+                    break
+                elif opcao in self.opcoes:
+                    self.opcoes[opcao]()
+                else:
+                    print("Opção inválida. Tente novamente.")
+            except ValueError:
+                print("Entrada inválida. Digite um número.")        
