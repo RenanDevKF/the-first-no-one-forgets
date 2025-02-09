@@ -18,6 +18,7 @@ class CriarConta:
         conta = ContaBancaria.proxima_conta+len(ContaBancaria.contas)
         self.conta_bancaria.titular = titular
         self.conta_bancaria.conta = conta
+        self.conta_bancaria.saldo = 0
         ContaBancaria.contas[conta] = titular
         ContaBancaria.proxima_conta += 1
         return conta
