@@ -53,4 +53,25 @@ class Saque:
                 print("Saldo insuficiente")
             else:
                 ContaBancaria.contas[conta]["saldo"] -= valor   
-                print("Saque realizado com sucesso!")            
+                print("Saque realizado com sucesso!")
+
+class TransferenciaInterna:
+    def __init__(self):
+        self.conta_bancaria = ContaBancaria(None, None, None)
+        
+    def transferencia(self):
+        conta_origem = int(input("Digite o numero da conta de origem: "))
+        if conta_origem not in ContaBancaria.contas:
+            print("Conta de origem inexistente")
+        else:
+            conta_destino = int(input("Digite o numero da conta de destino: "))
+            if conta_destino not in ContaBancaria.contas:
+                print("Conta de destino inexistente")
+            else:
+                valor = float(input("Digite o valor a ser transferido: "))
+                if valor < 0 and valor > ContaBancaria.contas[conta_origem]["saldo"]:
+                    print("Saldo insuficiente")
+                else:
+                    ContaBancaria.contas[conta_origem]["saldo"] -= valor
+                    ContaBancaria.contas[conta_destino]["saldo"] += valor
+                    print("Transferencia realizada com sucesso!")           
