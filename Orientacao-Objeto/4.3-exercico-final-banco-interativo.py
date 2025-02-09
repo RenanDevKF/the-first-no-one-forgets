@@ -11,7 +11,8 @@ class ContaBancaria:
     
 class CriarConta:
     
-    def criar_conta(self):
+    @staticmethod
+    def criar_conta():
         titular = input("Digite o nome do titular: ")
         conta = ContaBancaria.proxima_conta
         ContaBancaria.proxima_conta += 1
@@ -21,8 +22,8 @@ class CriarConta:
     
 class Deposito:
     
-
-    def depositar(self):
+    @staticmethod
+    def depositar():
         conta = int(input("Digite o numero da conta: "))
         if conta not in ContaBancaria.contas:
             print("Conta inexistente")
@@ -36,8 +37,8 @@ class Deposito:
                 
 class Saque:
     
-
-    def sacar(self):
+    @staticmethod
+    def sacar():
         conta = int(input("Digite o numero da conta: "))
         if conta not in ContaBancaria.contas:
             print("Conta inexistente")
@@ -51,8 +52,8 @@ class Saque:
 
 class TransferenciaInterna:
     
-        
-    def transferencia(self):
+    @staticmethod    
+    def transferencia():
         conta_origem = int(input("Digite o numero da conta de origem: "))
         if conta_origem not in ContaBancaria.contas:
             print("Conta de origem inexistente")
@@ -71,8 +72,8 @@ class TransferenciaInterna:
                     
 class ExibirSaldo:
     
-        
-    def exibir_saldo(self):
+    @staticmethod    
+    def exibir_saldo():
         conta = int(input("Digite o numero da conta: "))
         if conta not in ContaBancaria.contas:
             print("Conta inexistente")
