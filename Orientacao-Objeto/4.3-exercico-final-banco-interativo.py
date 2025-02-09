@@ -38,3 +38,19 @@ class Deposito:
             else:
                 ContaBancaria.contas[conta]["saldo"] += valor
                 print("Deposito realizado com sucesso!")
+                
+class Saque:
+    def __init__(self):
+        self.conta_bancaria = ContaBancaria(None, None, None)
+
+    def sacar(self):
+        conta = int(input("Digite o numero da conta: "))
+        if conta not in ContaBancaria.contas:
+            print("Conta inexistente")
+        else:
+            valor = float(input("Digite o valor a ser sacado: "))
+            if valor < 0 and valor > ContaBancaria.contas[conta]["saldo"]:
+                print("Saldo insuficiente")
+            else:
+                ContaBancaria.contas[conta]["saldo"] -= valor   
+                print("Saque realizado com sucesso!")            
