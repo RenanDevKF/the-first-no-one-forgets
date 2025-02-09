@@ -74,4 +74,48 @@ class TransferenciaInterna:
                 else:
                     ContaBancaria.contas[conta_origem]["saldo"] -= valor
                     ContaBancaria.contas[conta_destino]["saldo"] += valor
-                    print("Transferencia realizada com sucesso!")           
+                    print("Transferencia realizada com sucesso!")
+                    
+class ExibirSaldo:
+    def __init__(self):
+        self.conta_bancaria = ContaBancaria(None, None, None)
+        
+    def exibir_saldo(self):
+        conta = int(input("Digite o numero da conta: "))
+        if conta not in ContaBancaria.contas:
+            print("Conta inexistente")
+        else:
+            print(f"Saldo da conta {conta}: R$ {ContaBancaria.contas[conta]['saldo']:.2f}")
+            
+class MenuInterativo:
+    def __init__(self):
+        self.criar_conta = CriarConta()
+        self.depositar = Deposito()
+        self.sacar = Saque()
+        self.transferencia = TransferenciaInterna()
+        self.exibir_saldo = ExibirSaldo()
+        
+    def exibir_menu(self):
+        print("1 - Criar Conta")
+        print("2 - Depositar")
+        print("3 - Sacar")
+        print("4 - Transferir")
+        print("5 - Exibir Saldo")
+        print("0 - Sair")
+        
+        opcao = int(input("Digite a opção desejada: "))
+        return opcao
+        
+    def executar_opcao(self, opcao):
+        while opcao != 0:
+            if opcao == 1:
+                self.criar_conta.criar_conta()
+            elif opcao == 2:
+                self.depositar.depositar()  
+            elif opcao == 3:
+                self.sacar.sacar()
+            elif opcao == 4:
+                self.transferencia.transferencia()
+            elif opcao == 5:
+                self.exibir_saldo.exibir_saldo()
+            opcao = self.exibir_menu()        
