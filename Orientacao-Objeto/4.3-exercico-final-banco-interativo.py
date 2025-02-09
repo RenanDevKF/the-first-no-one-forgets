@@ -112,10 +112,11 @@ class MenuInterativo:
                     print("Saindo do sistema...")
                     break
                 if opcao in self.opcoes:
-                    self.opcoes[opcao]()  # Chama o método estático diretamente
+                    self.opcoes[opcao]()  # Chama o método estático corretamente
                 else:
                     print("Opção inválida. Tente novamente.")
             except ValueError:
                 print("Erro: Digite um número válido.")  
+  
   
       
