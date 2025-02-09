@@ -46,7 +46,7 @@ class Saque:
             print("Conta inexistente")
         else:
             valor = float(input("Digite o valor a ser sacado: "))
-            if valor < 0 and valor > ContaBancaria.contas[conta]["saldo"]:
+            if valor < 0 or valor > ContaBancaria.contas[conta]["saldo"]:
                 print("Saldo insuficiente")
             else:
                 ContaBancaria.contas[conta]["saldo"] -= valor   
