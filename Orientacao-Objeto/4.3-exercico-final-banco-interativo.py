@@ -113,4 +113,6 @@ class MenuInterativo:
                 self.transferencia.transferencia()
             elif opcao == 5:
                 self.exibir_saldo.exibir_saldo()
+            else:
+                print("Opção inválida, tente novamente um numero de 0 a 5.")
             opcao = self.exibir_menu()        
