@@ -23,3 +23,18 @@ class CriarConta:
         ContaBancaria.proxima_conta += 1
         return conta
     
+class Deposito:
+    def __init__(self):
+        self.conta_bancaria = ContaBancaria(None, None, None)
+
+    def depositar(self):
+        conta = int(input("Digite o numero da conta: "))
+        if conta not in ContaBancaria.contas:
+            print("Conta inexistente")
+        else:
+            valor = float(input("Digite o valor a ser depositado: "))
+            if valor < 0:
+                print("Valor inválido, o valor de deposito deve ser maior que zero")
+            else:
+                ContaBancaria.contas[conta]["saldo"] += valor
+                print("Deposito realizado com sucesso!")
