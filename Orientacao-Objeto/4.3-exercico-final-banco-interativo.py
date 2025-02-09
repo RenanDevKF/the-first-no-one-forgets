@@ -1,86 +1,112 @@
 class ContaBancaria:
-    
     contas = {}
     proxima_conta = 1000
     
-    def __init__(self, titular, conta, saldo):
+    def __init__(self, titular, saldo=0):
+        self.conta = ContaBancaria.proxima_conta
         self.titular = titular
-        self.conta = conta
         self.saldo = saldo
-        ContaBancaria.contas[conta] = {"titular": titular, "saldo": saldo}
-    
+        ContaBancaria.contas[self.conta] = self
+        ContaBancaria.proxima_conta += 1
+
+    @staticmethod
+    def conta_existe(conta):
+        return conta in ContaBancaria.contas
+
+
 class CriarConta:
-    
     @staticmethod
     def criar_conta():
         titular = input("Digite o nome do titular: ")
-        conta = ContaBancaria.proxima_conta
-        ContaBancaria.proxima_conta += 1
-        ContaBancaria.contas[conta] = {"titular": titular, "saldo": 0}        
-        print(f"Conta criada com sucesso! Numero da sua nova conta é: {conta}")
-    
+        nova_conta = ContaBancaria(titular)  # Criação da conta com saldo 0
+        print(f"Conta criada com sucesso! Número da sua nova conta é: {nova_conta.conta}")
+
+
 class Deposito:
-    
     @staticmethod
     def depositar():
-        conta = int(input("Digite o numero da conta: "))
-        if conta not in ContaBancaria.contas:
+        conta = int(input("Digite o número da conta: "))
+        if not ContaBancaria.conta_existe(conta):
             print("Conta inexistente")
-        else:
+            return
+
+        try:
             valor = float(input("Digite o valor a ser depositado: "))
             if valor <= 0:
-                print("Valor inválido, o valor de deposito deve ser maior que zero")
+                print("Valor inválido, deve ser maior que zero")
             else:
-                ContaBancaria.contas[conta]["saldo"] += valor
-                print("Deposito realizado com sucesso!")
-                
+                ContaBancaria.contas[conta].saldo += valor
+                print("Depósito realizado com sucesso!")
+        except ValueError:
+            print("Erro: Valor inválido.")
+
+
 class Saque:
     @staticmethod
     def sacar():
         conta = int(input("Digite o número da conta: "))
-        if conta not in ContaBancaria.contas:
+        if not ContaBancaria.conta_existe(conta):
             print("Conta inexistente")
-        else:
+            return
+
+        try:
             valor = float(input("Digite o valor a ser sacado: "))
             if valor <= 0:
                 print("Erro: O valor do saque deve ser maior que zero.")
-            elif valor > ContaBancaria.contas[conta]["saldo"]:
+            elif valor > ContaBancaria.contas[conta].saldo:
                 print("Erro: Saldo insuficiente.")
             else:
-                ContaBancaria.contas[conta]["saldo"] -= valor
+                ContaBancaria.contas[conta].saldo -= valor
                 print("Saque realizado com sucesso!")
+        except ValueError:
+            print("Erro: Valor inválido.")
+
 
 class TransferenciaInterna:
     @staticmethod
     def transferencia():
         conta_origem = int(input("Digite o número da conta de origem: "))
-        if conta_origem not in ContaBancaria.contas:
+        if not ContaBancaria.conta_existe(conta_origem):
             print("Conta de origem inexistente")
-        else:
-            conta_destino = int(input("Digite o número da conta de destino: "))
-            if conta_destino not in ContaBancaria.contas:
-                print("Conta de destino inexistente")
+            return
+
+        conta_destino = int(input("Digite o número da conta de destino: "))
+        if not ContaBancaria.conta_existe(conta_destino):
+            print("Conta de destino inexistente")
+            return
+
+        try:
+            valor = float(input("Digite o valor a ser transferido: "))
+            if valor <= 0:
+                print("Erro: O valor da transferência deve ser maior que zero.")
+            elif valor > ContaBancaria.contas[conta_origem].saldo:
+                print("Erro: Saldo insuficiente.")
             else:
-                valor = float(input("Digite o valor a ser transferido: "))
-                if valor <= 0:
-                    print("Erro: O valor da transferência deve ser maior que zero.")
-                elif valor > ContaBancaria.contas[conta_origem]["saldo"]:
-                    print("Erro: Saldo insuficiente.")
-                else:
-                    ContaBancaria.contas[conta_origem]["saldo"] -= valor
-                    ContaBancaria.contas[conta_destino]["saldo"] += valor
-                    print("Transferência realizada com sucesso!")
-                    
+                ContaBancaria.contas[conta_origem].saldo -= valor
+                ContaBancaria.contas[conta_destino].saldo += valor
+                print("Transferência realizada com sucesso!")
+        except ValueError:
+            print("Erro: Valor inválido.")
+
+
 class ExibirSaldo:
+    @staticmethod
+    def obter_saldo(conta):
+        conta_info = ContaBancaria.contas.get(conta)
+        if conta_info:
+            return conta_info.saldo
+        return None
     
-    @staticmethod    
+    @staticmethod
     def exibir_saldo():
-        conta = int(input("Digite o numero da conta: "))
-        if conta not in ContaBancaria.contas:
+        conta = int(input("Digite o número da conta: "))
+        saldo = ExibirSaldo.obter_saldo(conta)
+        if saldo is None:
             print("Conta inexistente")
         else:
-            print(f"Saldo da conta {conta}: R$ {ContaBancaria.contas[conta]['saldo']:.2f}")
-            
+            print(f"Saldo da conta {conta}: R$ {saldo:.2f}")
+
+
 class MenuInterativo:
     def __init__(self):
         self.opcoes = {
@@ -91,19 +117,11 @@ class MenuInterativo:
             5: ExibirSaldo.exibir_saldo
         }
 
-        self.nomes_opcoes = {
-            1: "Criar Conta",
-            2: "Depositar",
-            3: "Sacar",
-            4: "Transferir",
-            5: "Exibir Saldo"
-        }
-
     def exibir_menu(self):
         while True:
             print("\n==== Menu Banco ====")
-            for key, nome in self.nomes_opcoes.items():
-                print(f"{key} - {nome}")
+            for key, nome in self.opcoes.items():
+                print(f"{key} - {nome.__name__.replace('_', ' ').capitalize()}")
             print("0 - Sair")
 
             try:
@@ -116,9 +134,5 @@ class MenuInterativo:
                     input("\nPressione Enter para continuar...")  # Adiciona pausa no menu
                 else:
                     print("Opção inválida. Tente novamente.")
-
             except ValueError:
-                print("Erro: Digite um número válido.")  
-  
-  
-      
+                print("Erro: Digite um número válido.")
