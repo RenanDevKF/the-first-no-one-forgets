@@ -44,10 +44,17 @@ def calcular_media():
     media = total_notas / quantidade_notas
     print(f"\n📊 Média da turma: {media:.2f}")
 
-def corrigir_nota(nome,nota_nova):
+def corrigir_nota(nome, indice, nota_nova):
     if nome in alunos:
-        alunos[nome] = nota_nova
-        print(f"Nota de {nome} corrigida para {nota_nova}.")
+        if isinstance(alunos[nome], (list, tuple)):
+            if 0 <= indice < len(alunos[nome]):
+                alunos[nome][indice] = nota_nova
+                print(f"Nota {indice + 1} de {nome} corrigida para {nota_nova}.")
+            else:
+                print(f"Indice {indice} fora da lista de notas de {nome}, escolha um indice dentro de 0 e {len(alunos[nome]) - 1}.")
+        else:
+            alunos[nome] = nota_nova
+            print(f"Nota de {nome} corrigida para {nota_nova}.")
     else:
         print(f"Aluno {nome} nao encontrado.")
 
@@ -69,5 +76,5 @@ acrescentar_nota("Ana", 9.0)
 
 mostrar_notas()
 calcular_media()
-corrigir_nota("Ana", 9.0)
+corrigir_nota("Ana",2, 9.0)
 calcular_media()
