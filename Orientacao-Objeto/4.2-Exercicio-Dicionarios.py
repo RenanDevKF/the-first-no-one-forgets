@@ -60,8 +60,10 @@ def corrigir_nota(nome, indice, nota_nova):
 
 def acrescentar_nota(nome,nota_nova):
     if nome in alunos:
-        alunos[nome] = alunos[nome], nota_nova
-        print(f"Nota de {nome} acrescentada para {alunos[nome]}.")
+        if not isinstance(alunos[nome], list):  # Verifica se a nota é uma lista
+            alunos[nome] = [alunos[nome]]
+        alunos[nome].append(nota_nova)
+        print(f"Nota {nota_nova} acrescentada para {nome}.")
     else:
         print(f"Aluno {nome} nao encontrado.")
 
@@ -72,9 +74,15 @@ adicionar_aluno("Carlos", 7.0)
 adicionar_aluno("Bianca", 9.2)
 adicionar_aluno("Ana", 9.0)
 
+
 acrescentar_nota("Ana", 9.0)
+acrescentar_nota("Bianca", 9.0)
+acrescentar_nota("carlos", 9.0)
 
 mostrar_notas()
 calcular_media()
 corrigir_nota("Ana",2, 9.0)
+corrigir_nota("Bianca", 0, 9.0)
+corrigir_nota("Ana", 0, 9.0)
+corrigir_nota("Carlos", 1, 5.0)
 calcular_media()
