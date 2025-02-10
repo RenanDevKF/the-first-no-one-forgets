@@ -15,7 +15,7 @@ alunos = {}
 
 def adicionar_aluno(nome,nota):
     if nome in alunos:
-        print(f"Aluno {nome} ja cadastrado.")
+        print(f"Aluno {nome} ja cadastrado com nota {alunos[nome]}.")
     else:
         alunos[nome] = nota
         print(f"Aluno {nome} cadastrado com nota {nota}.")
@@ -43,6 +43,7 @@ def corrigir_nota(nome,nota_nova):
 adicionar_aluno("Ana", 8.5)
 adicionar_aluno("Carlos", 7.0)
 adicionar_aluno("Bianca", 9.2)
+adicionar_aluno("Ana", 9.0)
 
 mostrar_notas()
 calcular_media()
