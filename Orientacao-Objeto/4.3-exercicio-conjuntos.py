@@ -21,12 +21,14 @@ def listar_presentes():
         
 def confirmar_presenca(nome):
     qtd_presentes = 0
+    qtd_ausentes = 0
     if nome in presentes:
         qtd_presentes += 1
         print(f"{nome} esta presente.")
         print(f"Quantidade de alunos presentes: {qtd_presentes}")
     else:
         print(f"{nome} nao esta presente.")
+        print(f"Quantidade de alunos ausentes: {qtd_ausentes}")
 
 # Teste do sistema
 marcar_presenca("Lucas")
