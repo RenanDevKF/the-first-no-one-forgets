@@ -1,13 +1,24 @@
 # 2. Exercício com Dicionários
 # Objetivo: Criar um sistema de cadastro de alunos e notas usando dicionários.
+"""
+    Pratique:
+
+Adicione mais alunos.
+Crie uma função para buscar um aluno pelo nome.
+Implemente uma opção para atualizar a nota de um aluno.
+
+"""
 
 # Dicionário para armazenar alunos e notas
 
 alunos = {}
 
 def adicionar_aluno(nome,nota):
-    alunos[nome] = nota
-    print(f"Aluno {nome} cadastrado com nota {nota}.")
+    if nome in alunos:
+        print(f"Aluno {nome} ja cadastrado.")
+    else:
+        alunos[nome] = nota
+        print(f"Aluno {nome} cadastrado com nota {nota}.")
 
 def mostrar_notas():
     print("\n Notas dos Alunos:")
