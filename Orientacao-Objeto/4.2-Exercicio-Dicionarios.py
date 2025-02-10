@@ -26,11 +26,23 @@ def mostrar_notas():
         print(f"{nome}: {nota}")
         
 def calcular_media():
-    if alunos:
-        media = sum(alunos.values()) / len(alunos)
-        print(f"\n Média da turma: {media:.2f}")
-    else:
-        print("\n Nenhum aluno cadastrado.")
+    if not alunos:
+        print("\n⚠️ Nenhum aluno cadastrado.")
+        return
+    
+    total_notas = 0
+    quantidade_notas = 0
+    
+    for nota in alunos.values(): # Verifica se a nota é uma lista ou tupla
+        if isinstance(nota, (list, tuple)):  # Verifica se a nota é uma lista ou tupla
+            total_notas += sum(nota) # Soma as notas
+            quantidade_notas += len(nota)
+        else:
+            total_notas += nota
+            quantidade_notas += 1
+
+    media = total_notas / quantidade_notas
+    print(f"\n📊 Média da turma: {media:.2f}")
 
 def corrigir_nota(nome,nota_nova):
     if nome in alunos:
