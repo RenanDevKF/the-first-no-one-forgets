@@ -38,12 +38,22 @@ def corrigir_nota(nome,nota_nova):
         print(f"Nota de {nome} corrigida para {nota_nova}.")
     else:
         print(f"Aluno {nome} nao encontrado.")
+
+def acrescentar_nota(nome,nota_nova):
+    if nome in alunos:
+        alunos[nome] = alunos[nome], nota_nova
+        print(f"Nota de {nome} acrescentada para {alunos[nome]}.")
+    else:
+        print(f"Aluno {nome} nao encontrado.")
+
         
 # Teste do sistema
 adicionar_aluno("Ana", 8.5)
 adicionar_aluno("Carlos", 7.0)
 adicionar_aluno("Bianca", 9.2)
 adicionar_aluno("Ana", 9.0)
+
+acrescentar_nota("Ana", 9.0)
 
 mostrar_notas()
 calcular_media()
