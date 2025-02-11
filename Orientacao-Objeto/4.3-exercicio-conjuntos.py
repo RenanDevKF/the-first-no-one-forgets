@@ -44,4 +44,4 @@ marcar_presenca("Lucas")  # Não será adicionado novamente
 
 listar_presentes()
 
-confirmar_presenca(lista_alunos)
+confirmar_presenca()
