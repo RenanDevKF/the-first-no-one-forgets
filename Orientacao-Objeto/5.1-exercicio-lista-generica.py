@@ -24,6 +24,13 @@ class ListaGenerica(Generic[T]):
             return self.item.pop()
         else:
             return None
+        
+    def remover_especifico(self, item: T):
+        if item in self.item:
+            self.item.remove(item)
+            return f"Item removido -> {item}"
+        else:
+            return f"Item nao encontrado -> {item}"
     
     def mostrar_lista(self) -> T:
         return self.item.copy() # Retorna uma cópia da lista para evitar alterações externas
@@ -36,4 +43,6 @@ lista.adicionar([1, 2, 3])
 print(lista.mostrar_lista())
 
 print(lista.remover())
+print(lista.mostrar_lista())
+print(lista.remover_especifico("Renan"))
 print(lista.mostrar_lista())
