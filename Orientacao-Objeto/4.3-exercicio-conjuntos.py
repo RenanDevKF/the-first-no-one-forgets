@@ -17,7 +17,7 @@ def marcar_presenca(nome):
 
 def listar_presentes():
     print("\n📌 Alunos Presentes:")
-    for aluno in presentes:
+    for aluno in sorted(presentes):
         print(aluno)
         
 def confirmar_presenca(nome):
@@ -27,12 +27,14 @@ def confirmar_presenca(nome):
         if nome in presentes:
             qtd_presentes += 1
             print(f"{nome} esta presente.")
-            print(f"Quantidade de alunos presentes: {qtd_presentes}")
-    else:
-        ausentes = set(lista_alunos) - presentes
-        qtd_ausentes = len(ausentes)
-        print(f"Quantidade de alunos ausentes: {qtd_ausentes}")
-        print(f"Alunos ausentes: {ausentes}")
+            
+      
+    ausentes = set(lista_alunos) - presentes
+    qtd_ausentes = len(ausentes)
+    print(f"Quantidade de alunos presentes: {qtd_presentes}")
+    print(f"Quantidade de alunos ausentes: {qtd_ausentes}")
+    print(f"Alunos presentes: {sorted(presentes)}")
+    print(f"Alunos ausentes: {sorted(ausentes)}")
 
 # Teste do sistema
 marcar_presenca("Lucas")
