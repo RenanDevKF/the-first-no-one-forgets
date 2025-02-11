@@ -12,10 +12,15 @@ Modifique o código para contar letras em uma frase.
 from collections import Counter
 
 palavras = ["Python", "Java", "Python", "C++", "Java", "Python", "C#"]
-contagem = Counter(palavras)
 
 
-print("\n📊 Frequência das palavras:")
-for palavra, qtd in contagem.items():
-    print(f"{palavra}: {qtd}")
+def contagem_elementos(palavras):
+    contagem = Counter(palavras)
+    print("\n📊 Frequência das palavras:")
+    for palavra, qtd in contagem.items():
+        print(f"{palavra}: {qtd}")
+        
 
+
+#chamando funcao
+contagem_elementos(palavras)
