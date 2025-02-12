@@ -30,4 +30,65 @@ class DicionarioGenerico(Generic[K, V]):
         print(self.dicionario)
         
 
+# teste 1
 
+dicionario = DicionarioGenerico[int, str]() # ou dicionario = DicionarioGenerico()
+
+dicionario.adicionar(1, 'a')
+dicionario.adicionar(2, 'b')
+dicionario.adicionar(3, 'c')
+
+print(dicionario.mostrar_dicionario())  # {1: 'a', 2: 'b', 3: 'c'}
+
+# teste 2
+
+dicionario = DicionarioGenerico[str, int]() # ou dicionario = DicionarioGenerico()
+
+dicionario.adicionar('a', 1)
+dicionario.adicionar('b', 2)
+dicionario.adicionar('c', 3)
+
+print(dicionario.mostrar_dicionario())  # {'a': 1, 'b': 2, 'c': 3}
+
+# teste 3
+
+dicionario = DicionarioGenerico[str, float]() # ou dicionario = DicionarioGenerico()
+
+dicionario.adicionar('a', 1.1)
+dicionario.adicionar('b', 2.2)
+dicionario.adicionar('c', 3.3)
+
+print(dicionario.mostrar_dicionario())  # {'a': 1.1, 'b': 2.2, 'c': 3.3}
+
+# teste 4
+
+dicionario = DicionarioGenerico[float, int]() # ou dicionario = DicionarioGenerico()
+
+dicionario.adicionar(1.1, 1)
+dicionario.adicionar(2.2, 2)
+dicionario.adicionar(3.3, 3)
+
+print(dicionario.mostrar_dicionario())  # {1.1: 1, 2.2: 2, 3.3: 3}
+
+# teste 5 - remover
+
+dicionario = DicionarioGenerico[int, str]() # ou dicionario = DicionarioGenerico()
+
+dicionario.adicionar(1, 'a')
+dicionario.adicionar(2, 'b')
+dicionario.adicionar(3, 'c')    
+
+print(dicionario.mostrar_dicionario())  # {1: 'a', 2: 'b', 3: 'c'}
+
+print(dicionario.remover(2))  # b
+print(dicionario.mostrar_dicionario())  # {1: 'a', 3: 'c'}
+
+# teste 6 - obter
+
+dicionario = DicionarioGenerico[int, str]() # ou dicionario = DicionarioGenerico()
+
+dicionario.adicionar(1, 'a')
+dicionario.adicionar(2, 'b')
+dicionario.adicionar(3, 'c')
+
+print(dicionario.obter(2))  # b
