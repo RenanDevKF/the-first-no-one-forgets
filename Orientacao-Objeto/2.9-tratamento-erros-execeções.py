@@ -140,4 +140,32 @@ conta.sacar(700)  # Vai gerar um erro tratado
 ✅ O uso de raise permite lançar exceções quando condições específicas são violadas.
 
 💡 Agora pratique implementando exceções em suas classes e métodos!
+
+1. Estrutura da Hierarquia de Exceções
+Abaixo está um resumo das principais exceções organizadas hierarquicamente:
+
+BaseException
+│
+├── SystemExit         # Sinaliza saída do sistema (não deve ser capturado normalmente)
+├── KeyboardInterrupt  # Interrupção do usuário (Ctrl + C)
+├── Exception          # Classe base para a maioria das exceções
+│   │
+│   ├── ArithmeticError    # Erros matemáticos
+│   │   ├── ZeroDivisionError  # Divisão por zero
+│   │   ├── OverflowError      # Número muito grande para ser representado
+│   │   └── FloatingPointError # Erros em operações de ponto flutuante
+│   │
+│   ├── LookupError       # Erros em buscas (índices e chaves inválidas)
+│   │   ├── IndexError     # Índice inválido em listas, tuplas
+│   │   └── KeyError       # Chave inválida em dicionários
+│   │
+│   ├── ValueError        # Tipo correto, mas valor inválido
+│   ├── TypeError         # Tipo de dado incompatível
+│   ├── AttributeError    # Atributo não encontrado em um objeto
+│   ├── FileNotFoundError # Arquivo não encontrado
+│   ├── ImportError       # Erro ao importar módulos
+│   ├── NameError         # Variável não definida
+│   ├── RuntimeError      # Erros genéricos em tempo de execução
+│   └── ... (Outras exceções específicas)
+
 """
