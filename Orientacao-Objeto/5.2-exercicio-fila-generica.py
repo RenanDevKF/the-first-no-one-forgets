@@ -23,7 +23,7 @@ class FilaGenerica(Generic[T]):
         if self.item:
             return self.item.pop(0)
         else:
-            return None
+            return "Lista Vazia, não tme o que retirar"
     
     def tamanho(self):
         return len(self.item)
@@ -38,6 +38,8 @@ fila.enfileirar(30)
 
 print(fila.desenfileirar())  # 10
 print(fila.desenfileirar())  # 20
+print(fila.desenfileirar())  # 30
+print(fila.desenfileirar())
 
 print(fila.tamanho())
 
