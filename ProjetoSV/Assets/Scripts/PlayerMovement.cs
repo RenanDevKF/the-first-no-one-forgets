@@ -54,7 +54,13 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         // Aplica a velocidade ao Rigidbody2D
-        rb.velocity = movement * speed;
+        rb.linearVelocity = movement * speed;
+
+        transform.position = new Vector3(
+            Mathf.Round(transform.position.x * 16) / 16,
+            Mathf.Round(transform.position.y * 16) / 16,
+            transform.position.z
+        );        
     }
 }
 
