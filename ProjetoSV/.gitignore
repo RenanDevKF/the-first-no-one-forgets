@@ -1,0 +1,19 @@
+# Pastas que NÃO devem ser commitadas
+Library/
+Logs/
+Temp/
+UserSettings/
+.vscode/
+
+# Configurações do Unity que não precisam ser rastreadas
+ProjectSettings/
+Packages/
+
+# Arquivos compilados
+*.csproj
+*.sln
+*.meta
+
+# Outros arquivos desnecessários
+*.DS_Store
+*.tmp
