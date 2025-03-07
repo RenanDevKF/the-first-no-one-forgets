@@ -1,0 +1,28 @@
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+
+<h3>Topico: {{ topic }}</h3>
+
+<p>Entradaas: </p>
+<ul>
+    {% for entry in entries %}
+        <li>
+            <p>{{ entry.date_aadded | date:'M d, Y H:i'}}</p>
+            <p>{{entry.text | linebreaks}}</p>
+        </li>
+
+        {% empty %}
+        <li>
+            Não há registros.
+            
+        </li>
+
+
+    {% endfor %}
+</ul>
+
+
+
+
+{% endblock content %}
