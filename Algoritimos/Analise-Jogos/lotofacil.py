@@ -14,3 +14,9 @@ class LotoFacilAnalyzer:
         """Carrega os resultados anteriores da Lotofácil."""
         self.data = pd.read_csv(file_path)
         print("Dados carregados com sucesso!")
+        
+    def get_most_frequent_numbers(self, top_n=15):
+        """Retorna os números mais frequentes nos sorteios."""
+        all_numbers = self.data.iloc[:, 1:].values.flatten()
+        freq_series = pd.Series(all_numbers).value_counts()
+        return freq_series.head(top_n)
