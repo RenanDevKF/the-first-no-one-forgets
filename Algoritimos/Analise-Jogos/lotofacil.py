@@ -20,3 +20,9 @@ class LotoFacilAnalyzer:
         all_numbers = self.data.iloc[:, 1:].values.flatten()
         freq_series = pd.Series(all_numbers).value_counts()
         return freq_series.head(top_n)
+    
+    def get_least_frequent_numbers(self, bottom_n=10):
+        """Retorna os números menos sorteados."""
+        all_numbers = self.data.iloc[:, 1:].values.flatten()
+        freq_series = pd.Series(all_numbers).value_counts()
+        return freq_series.tail(bottom_n)
