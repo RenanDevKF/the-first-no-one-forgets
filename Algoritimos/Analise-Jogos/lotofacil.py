@@ -37,3 +37,10 @@ class LotoFacilAnalyzer:
                     
         delays = {num: len(self.data) - last_occurrence.get(num, 0) for num in range(1, 26)}
         return pd.Series(delays).sort_values(ascending=False)
+    
+    def suggest_numbers(self):
+        """Sugere uma combinação baseada nos números mais frequentes e no atraso."""
+        most_frequent = self.get_most_frequent_numbers(10).index.tolist()
+        least_frequent = self.get_least_frequent_numbers(5).index.tolist()
+        suggested = random.sample(most_frequent, 10) + random.sample(least_frequent, 5)
+        return sorted(suggested)
