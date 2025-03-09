@@ -44,3 +44,17 @@ class LotoFacilAnalyzer:
         least_frequent = self.get_least_frequent_numbers(5).index.tolist()
         suggested = random.sample(most_frequent, 10) + random.sample(least_frequent, 5)
         return sorted(suggested)
+    
+    def plot_frequencies(self):
+        """Plota um gráfico das frequências dos números."""
+        freq_series = self.get_most_frequent_numbers(25)
+        freq_series.sort_index().plot(kind='bar', figsize=(10,5), color='blue')
+        plt.xlabel('Números')
+        plt.ylabel('Frequência')
+        plt.title('Frequência dos Números na Lotofácil')
+        plt.show()
+
+# Exemplo de uso (necessário arquivo CSV com resultados)
+# analyzer = LotoFacilAnalyzer('resultados_lotofacil.csv')
+# print(analyzer.suggest_numbers())
+# analyzer.plot_frequencies()
