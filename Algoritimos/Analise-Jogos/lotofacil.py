@@ -26,3 +26,14 @@ class LotoFacilAnalyzer:
         all_numbers = self.data.iloc[:, 1:].values.flatten()
         freq_series = pd.Series(all_numbers).value_counts()
         return freq_series.tail(bottom_n)
+    
+    def get_number_delay(self):
+        """Calcula o atraso de cada número (quantos sorteios sem sair)."""
+        last_occurrence = {}
+        for index, row in self.data.iterrows():
+            for number in range(1, 26):
+                if number in row.values:
+                    last_occurrence[number] = index
+                    
+        delays = {num: len(self.data) - last_occurrence.get(num, 0) for num in range(1, 26)}
+        return pd.Series(delays).sort_values(ascending=False)
