@@ -65,22 +65,29 @@ class LotoFacilAnalyzer:
         plt.show()
         
     def find_full_coverage_draws(self):
-        """Encontra quantos sorteios foram necessários para cobrir todos os 25 números, repetindo a análise sempre que isso ocorre."""
+        """Encontra quantos sorteios foram necessários para cobrir todos os 25 números, exibindo os números não sorteados em ciclos incompletos."""
         
-        seen_numbers = set()  # Conjunto para armazenar os números já sorteados
+        seen_numbers = set()  # Conjunto de números já sorteados
         draws_needed = 0  # Contador de sorteios processados
-        cycles = []  # Lista para armazenar os ciclos encontrados
-
+        cycles = []  # Lista para armazenar a quantidade de sorteios por ciclo
+        all_numbers = set(range(1, 26))  # Conjunto com todos os números possíveis (1 a 25)
+        
         for index, row in self.data.iterrows():
-            seen_numbers.update(row[1:].values)  # Adiciona os números sorteados no concurso atual
-            draws_needed += 1  # Incrementa o contador de sorteios
+            seen_numbers.update(row[1:].values)  # Adiciona os números do sorteio atual
+            draws_needed += 1  # Incrementa o contador
             
-            if len(seen_numbers) == 25:  # Se todos os números já saíram, registramos o ciclo
-                cycles.append(draws_needed)  # Salva quantos sorteios foram necessários
-                seen_numbers.clear()  # Reinicia o conjunto para a próxima contagem
+            if len(seen_numbers) == 25:  # Se todos os números já saíram, o ciclo se encerra
+                print(f"Ciclo encerrado após {draws_needed} sorteios.")
+                cycles.append(draws_needed)  # Salva a quantidade de sorteios para o ciclo
+                seen_numbers.clear()  # Reinicia os números sorteados
                 draws_needed = 0  # Reinicia o contador
+                
+        # Caso o loop termine e ainda faltem números a serem sorteados
+        missing_numbers = all_numbers - seen_numbers
+        if missing_numbers:
+            print(f"Números que ainda não foram sorteados neste ciclo incompleto: {sorted(missing_numbers)}")
 
-        return cycles  # Retorna uma lista com a quantidade de sorteios para cada ciclo completo
+        return cycles  # Retorna a lista com o número de sorteios necessários para cada ciclo completo
 
 # Exemplo de uso (necessário arquivo CSV com resultados)
 analyzer = LotoFacilAnalyzer('resultados_lotofacil_corrigido.csv')
