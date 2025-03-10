@@ -65,19 +65,22 @@ class LotoFacilAnalyzer:
         plt.show()
         
     def find_full_coverage_draws(self):
-        """Encontra quantos sorteios foram necessários até que todos os 25 números fossem sorteados pelo menos uma vez."""
-    
+        """Encontra quantos sorteios foram necessários para cobrir todos os 25 números, repetindo a análise sempre que isso ocorre."""
+        
         seen_numbers = set()  # Conjunto para armazenar os números já sorteados
         draws_needed = 0  # Contador de sorteios processados
+        cycles = []  # Lista para armazenar os ciclos encontrados
 
         for index, row in self.data.iterrows():
             seen_numbers.update(row[1:].values)  # Adiciona os números sorteados no concurso atual
             draws_needed += 1  # Incrementa o contador de sorteios
             
-            if len(seen_numbers) == 25:  # Se já saíram todos os 25 números, encerramos
-                return draws_needed
+            if len(seen_numbers) == 25:  # Se todos os números já saíram, registramos o ciclo
+                cycles.append(draws_needed)  # Salva quantos sorteios foram necessários
+                seen_numbers.clear()  # Reinicia o conjunto para a próxima contagem
+                draws_needed = 0  # Reinicia o contador
 
-        return None  # Retorna None caso nunca todos os números tenham saído (caso extremo)
+        return cycles  # Retorna uma lista com a quantidade de sorteios para cada ciclo completo
 
 # Exemplo de uso (necessário arquivo CSV com resultados)
 analyzer = LotoFacilAnalyzer('resultados_lotofacil_corrigido.csv')
