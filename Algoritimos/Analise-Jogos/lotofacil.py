@@ -7,6 +7,8 @@ class LotoFacilAnalyzer:
         """Inicializa o analisador da Lotofácil."""
         self.file_path = file_path
         self.data = None
+        self.most_frequent = None
+        self.least_frequent = None
         if file_path:
             self.load_data(file_path)
             
@@ -15,17 +17,21 @@ class LotoFacilAnalyzer:
         self.data = pd.read_csv(file_path)
         print("Dados carregados com sucesso!")
         
+        # Atualizar as listas de números mais e menos frequentes após carregar os dados
+        self.most_frequent = self.get_most_frequent_numbers()
+        self.least_frequent = self.get_least_frequent_numbers()
+
     def get_most_frequent_numbers(self, top_n=15):
         """Retorna os números mais frequentes nos sorteios."""
         all_numbers = self.data.iloc[:, 1:].values.flatten()
         freq_series = pd.Series(all_numbers).value_counts()
-        return freq_series.head(top_n)
+        return freq_series.head(top_n)  # Retorna como uma Series com os números mais frequentes
     
     def get_least_frequent_numbers(self, bottom_n=10):
         """Retorna os números menos sorteados."""
         all_numbers = self.data.iloc[:, 1:].values.flatten()
         freq_series = pd.Series(all_numbers).value_counts()
-        return freq_series.tail(bottom_n)
+        return freq_series.tail(bottom_n)  # Retorna como uma Series com os números menos frequentes
     
     def get_number_delay(self):
         """Calcula o atraso de cada número (quantos sorteios sem sair)."""
@@ -39,10 +45,14 @@ class LotoFacilAnalyzer:
         return pd.Series(delays).sort_values(ascending=False)
     
     def suggest_numbers(self):
-        """Sugere uma combinação baseada nos números mais frequentes e no atraso."""
-        most_frequent = self.get_most_frequent_numbers(10).index.tolist()
-        least_frequent = self.get_least_frequent_numbers(5).index.tolist()
-        suggested = random.sample(most_frequent, 10) + random.sample(least_frequent, 5)
+        # Garantir que existam elementos suficientes
+        if len(self.most_frequent) < 10 or len(self.least_frequent) < 5:
+            print("Erro: listas de números mais/menos frequentes estão vazias ou têm poucos elementos.")
+            return []
+
+        suggested = random.sample(self.most_frequent.index.tolist(), min(10, len(self.most_frequent))) + \
+                    random.sample(self.least_frequent.index.tolist(), min(5, len(self.least_frequent)))
+
         return sorted(suggested)
     
     def plot_frequencies(self):
@@ -55,6 +65,6 @@ class LotoFacilAnalyzer:
         plt.show()
 
 # Exemplo de uso (necessário arquivo CSV com resultados)
-# analyzer = LotoFacilAnalyzer('resultados_lotofacil.csv')
-# print(analyzer.suggest_numbers())
-# analyzer.plot_frequencies()
+analyzer = LotoFacilAnalyzer('resultados_lotofacil_corrigido.csv')
+print(analyzer.suggest_numbers())
+analyzer.plot_frequencies()
