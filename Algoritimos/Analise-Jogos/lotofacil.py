@@ -63,8 +63,25 @@ class LotoFacilAnalyzer:
         plt.ylabel('Frequência')
         plt.title('Frequência dos Números na Lotofácil')
         plt.show()
+        
+    def find_full_coverage_draws(self):
+        """Encontra quantos sorteios foram necessários até que todos os 25 números fossem sorteados pelo menos uma vez."""
+    
+        seen_numbers = set()  # Conjunto para armazenar os números já sorteados
+        draws_needed = 0  # Contador de sorteios processados
+
+        for index, row in self.data.iterrows():
+            seen_numbers.update(row[1:].values)  # Adiciona os números sorteados no concurso atual
+            draws_needed += 1  # Incrementa o contador de sorteios
+            
+            if len(seen_numbers) == 25:  # Se já saíram todos os 25 números, encerramos
+                return draws_needed
+
+        return None  # Retorna None caso nunca todos os números tenham saído (caso extremo)
 
 # Exemplo de uso (necessário arquivo CSV com resultados)
 analyzer = LotoFacilAnalyzer('resultados_lotofacil_corrigido.csv')
 print(analyzer.suggest_numbers())
 analyzer.plot_frequencies()
+print(f"Quantidade de sorteios necessários para que todos os números fossem sorteados: {analyzer.find_full_coverage_draws()}")
+
